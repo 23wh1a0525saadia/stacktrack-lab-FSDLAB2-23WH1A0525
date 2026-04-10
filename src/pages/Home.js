@@ -20,7 +20,14 @@ function Home() {
       <p>Lab ID: {LAB_ID}</p>
 
       <Link to="/tasks">
-        <button>Go to Tasks</button>
+        <button style={{
+          padding: '10px 20px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer'
+        }}>Go to Tasks</button>
       </Link>
       {/* TODO: Replace this placeholder with your question set UI */}
       
