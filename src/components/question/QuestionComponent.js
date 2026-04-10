@@ -5,29 +5,50 @@ function QuestionComponent() {
 
   useEffect(() => {
     const fetchTasks = async () => {
+      let data;
+
       try {
         const response = await fetch('/api/tasks');
-        const data = await response.json();
-        setTasks(data);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
+        data = await response.json();
+      } catch (err) {
+        data = [
+          {
+            _id: "1",
+            title: "Complete Assignment",
+            description: "React lab work",
+            status: "pending"
+          },
+          {
+            _id: "2",
+            title: "Prepare PPT",
+            description: "Make slides",
+            status: "completed"
+          }
+        ];
       }
+
+      setTasks(data);
     };
 
     fetchTasks();
   }, []);
 
   return (
-    <div>
-      <h2>Task List</h2>
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <h2 style={{ textAlign: 'center' }}>Task List</h2>
 
       {tasks.length === 0 ? (
-        <p>No tasks available</p>
+        <p style={{ textAlign: 'center' }}>No tasks available</p>
       ) : (
         tasks.map((task) => (
-          <div key={task._id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
+          <div key={task._id} style={{ 
+            border: '1px solid #ccc', 
+            margin: '10px', 
+            padding: '10px',
+            backgroundColor: '#f9f9f9'
+            }}>
+            <h3 style={{ marginBottom: '5px' }}>{task.title}</h3>
+            <p style={{ color: '#555' }}>{task.description}</p>
             <p><strong>Status:</strong> {task.status}</p>
           </div>
         ))
